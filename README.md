@@ -18,7 +18,7 @@ And import into your project (haxe) with:
 ```Haxe
 import com.gerantech.extension.alarmmanager.Alarms;
 ```
-#Schedule local notification
+# Schedule local notification
 
 ```Haxe
 // notify in 3 seconds later time every day :
@@ -29,7 +29,7 @@ Alarms.scheduleLocalNotification("notification ticker", "notification title", "n
 Alarms.cancelLocalNotifications( -1);
 ```
 
-#Invoke app
+# Invoke app
 
 Note: In order to use invoke app, you must replace manifest:<br/>
 Step 1: Add manifest template to `project.xml`
@@ -95,9 +95,19 @@ public function new()
 }
 ```
 
-#Invoke app via Scheme
+# Invoke app via Scheme
 
 Add filter and data to MainActivity in manifest template
+```XML
+	<intent-filter>
+		<action android:name="android.intent.action.VIEW"/>
+		<category android:name="android.intent.category.BROWSABLE"/>
+		<category android:name="android.intent.category.DEFAULT"/>
+		<data android:scheme="testapp"/>
+	</intent-filter>
+```
+
+Now your manifest ready
 ```XML
 <activity android:name="MainActivity" android:launchMode="singleTask" 
 		android:label="::APP_TITLE::" 
@@ -110,14 +120,12 @@ Add filter and data to MainActivity in manifest template
 		<category android:name="android.intent.category.LAUNCHER" />
 		<category android:name="tv.ouya.intent.category.GAME" />
 	</intent-filter>
-	<b>
-		<intent-filter>
-			<action android:name="android.intent.action.VIEW"/>
-			<category android:name="android.intent.category.BROWSABLE"/>
-			<category android:name="android.intent.category.DEFAULT"/>
-			<data android:scheme="testapp"/>
-		</intent-filter>
-	</b>
+	<intent-filter>
+		<action android:name="android.intent.action.VIEW"/>
+		<category android:name="android.intent.category.BROWSABLE"/>
+		<category android:name="android.intent.category.DEFAULT"/>
+		<data android:scheme="testapp"/>
+	</intent-filter>
 </activity>
 
 ```
