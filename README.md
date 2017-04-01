@@ -18,7 +18,7 @@ And import into your project (haxe) with:
 ```Haxe
 import com.gerantech.extension.alarmmanager.Alarms;
 ```
-# Schedule local notification
+# Schedule Local Notification
 
 ```Haxe
 // notify in 3 seconds later time every day :
@@ -29,7 +29,7 @@ Alarms.scheduleLocalNotification("notification ticker", "notification title", "n
 Alarms.cancelLocalNotifications( -1);
 ```
 
-# Invoke app
+# Invoke App
 
 Note: In order to use invoke app, you must replace manifest:<br/>
 Step 1: Add manifest template to `project.xml`
@@ -95,7 +95,7 @@ public function new()
 }
 ```
 
-# Invoke app via Scheme
+# Invoke App via Scheme
 
 Add filter and data to MainActivity in manifest template
 ```XML
