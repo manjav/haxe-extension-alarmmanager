@@ -80,7 +80,7 @@ Step 1: Create templates folder in root of project and create manifest inside th
 ```
 
 ```Haxe
-// run app every day in this time:
+// run app ten secondes later every day:
 Alarms.invokeApp("com.company.product", "welcome,to,haxe", Date.now().getTime() + 10000, DateTools.days(1));
 ```
 
@@ -90,6 +90,39 @@ Dont forget if you want run target app when screen locked, `showOnLockScreen` at
 public function new()
 {
 	super();
-	trace(Alarms.getParams());
+	trace(Alarms.getParams());//JsonString  {[{"arg0":"welcome"}, {"arg1":"to"}, {"arg2":"haxe"}]}
+	//var data:Dynamic = JsonParser.parse(Alarms.getParams());
 }
+```
+
+#Invoke app via Scheme
+
+Add filter and data to MainActivity in manifest template
+```XML
+<activity android:name="MainActivity" android:launchMode="singleTask" 
+		android:label="::APP_TITLE::" 
+		::if (WIN_ORIENTATION=="portrait"):: android:screenOrientation="sensorPortrait"::end::::if (WIN_ORIENTATION=="landscape"):: android:screenOrientation="sensorLandscape"::end::
+		android:configChanges="keyboardHidden|orientation|screenSize|screenLayout"
+		android:showOnLockScreen="true">
+	
+	<intent-filter>
+		<action android:name="android.intent.action.MAIN" />
+		<category android:name="android.intent.category.LAUNCHER" />
+		<category android:name="tv.ouya.intent.category.GAME" />
+	</intent-filter>
+	<b>
+		<intent-filter>
+			<action android:name="android.intent.action.VIEW"/>
+			<category android:name="android.intent.category.BROWSABLE"/>
+			<category android:name="android.intent.category.DEFAULT"/>
+			<data android:scheme="testapp"/>
+		</intent-filter>
+	</b>
+</activity>
+
+```
+
+```Haxe
+// run app ten secondes later one time:
+Alarms.invokeAppScheme("testapp://testoo?a=1&b=2", "welcome,to,haxe", Date.now().getTime() + 10000, 0);
 ```
