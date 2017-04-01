@@ -21,7 +21,7 @@ import com.gerantech.extension.alarmmanager.Alarms;
 #Schedule local notification
 
 ```Haxe
-// notify every day in this time:
+// notify in 3 seconds later time every day :
 Alarms.scheduleLocalNotification("notification ticker", "notification title", "notification message", Date.now().getTime() + 3000, DateTools.days(1), "notification info", "comma,sepatated,args,to,retrieve,after,notification.touched");
 
 
@@ -82,4 +82,14 @@ Step 1: Create templates folder in root of project and create manifest inside th
 ```Haxe
 // run app every day in this time:
 Alarms.invokeApp("com.company.product", "welcome,to,haxe", Date.now().getTime() + 10000, DateTools.days(1));
+```
+
+If you want retrieve data ("welcome,to,haxe in launched app you can use `getParams` method in `new` or `main` function in target app<br/>
+Dont forget if you want run target app when screen locked, `showOnLockScreen` attribute in template manifest must be true 
+```Haxe
+public function new()
+{
+	super();
+	trace(Alarms.getParams());
+}
 ```
