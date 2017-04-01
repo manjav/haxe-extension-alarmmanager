@@ -134,3 +134,8 @@ Now your manifest ready
 // run app ten secondes later one time:
 Alarms.invokeAppScheme("testapp://testoo?a=1&b=2", "welcome,to,haxe", Date.now().getTime() + 10000, 0);
 ```
+As local notification you can cancel invokes by:
+```Haxe
+// cancel invoke by id:
+Alarms.cancelInvokeApp();
+```
