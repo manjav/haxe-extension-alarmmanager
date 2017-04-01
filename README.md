@@ -31,7 +31,7 @@ Alarms.cancelLocalNotifications( -1);
 
 #Invoke app
 
-Note: In order to use invoke app, you must replace manifest:
+Note: In order to use invoke app, you must replace manifest:<br/>
 Step 1: Add manifest template to `project.xml`
 ```XML
 <template path="templates/AndroidManifest.xml" rename="app/src/main/AndroidManifest.xml" />
@@ -78,5 +78,8 @@ Step 1: Create templates folder in root of project and create manifest inside th
 	
 </manifest>
 ```
+
+```Haxe
 // run app every day in this time:
 Alarms.invokeApp("com.company.product", "welcome,to,haxe", Date.now().getTime() + 10000, DateTools.days(1));
+```
