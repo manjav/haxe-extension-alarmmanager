@@ -99,12 +99,12 @@ public function new()
 
 Add filter and data to MainActivity in manifest template
 ```XML
-	<intent-filter>
-		<action android:name="android.intent.action.VIEW"/>
-		<category android:name="android.intent.category.BROWSABLE"/>
-		<category android:name="android.intent.category.DEFAULT"/>
-		<data android:scheme="testapp"/>
-	</intent-filter>
+<intent-filter>
+	<action android:name="android.intent.action.VIEW"/>
+	<category android:name="android.intent.category.BROWSABLE"/>
+	<category android:name="android.intent.category.DEFAULT"/>
+	<data android:scheme="testapp"/>
+</intent-filter>
 ```
 
 Now your manifest ready
