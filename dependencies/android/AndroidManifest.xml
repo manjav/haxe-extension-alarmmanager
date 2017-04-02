@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.gerantech.extension.alarms">
+    <application>
+        <receiver android:name="com.gerantech.extension.alarms.recievers.LocalNotificationReceiver"/>
+        <receiver android:name="com.gerantech.extension.alarms.recievers.InvokeAppReceiver"/>
+    </application>
+</manifest>
