@@ -5,12 +5,15 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.WindowManager;
+import com.gerantech.extension.alarms.recievers.InvokeAppReceiver;
 import com.gerantech.extension.alarms.recievers.LocalNotificationReceiver;
 import org.haxe.extension.Extension;
 
 public class AlarmsExtension extends Extension
 {
     public static final String LOG_TAG = "H.N.E";
+    private static String intentData;
 
     public static int notification(String ticker, String title, String text, String info, String data, String icon, String sound, int time, int interval, int id, boolean clearPreviouses)
     {
@@ -24,6 +27,16 @@ public class AlarmsExtension extends Extension
         bundle.putString("sound", sound);
 
         return alarm(LocalNotificationReceiver.class, bundle, time, interval, id, clearPreviouses);
+    }
+
+    public static int invokeApp(String scheme, String packageName, String data, int time, int interval, int id, boolean clearPreviouses)
+    {
+        Bundle bundle = new Bundle();
+        bundle.putString("scheme", scheme);
+        bundle.putString("packageName", packageName);
+        bundle.putString("data", data);
+
+        return alarm(InvokeAppReceiver.class, bundle, time, interval, id, clearPreviouses);
     }
 
     private static int alarm(Class<?> cls, Bundle bundle, int time, int interval, int id, boolean clearPreviouses)
@@ -92,6 +105,24 @@ public class AlarmsExtension extends Extension
             }
         }
 
+        // retrieve scheme query params and add to json string
+        Uri data = mainActivity.getIntent().getData();
+        if(data != null)
+        {
+            if(keis != null)
+                intentData += ", ";
+
+            keis = data.getQueryParameterNames().toArray();
+            for (int step = 0; step < keis.length; step++)
+            {
+                String key = (String) keis[step];
+                Object value = data.getQueryParameter(key);
+                intentData += "{\"" + key + "\":\"" + value.toString() + "\"}";
+
+                if(step < keis.length-1)
+                    intentData += ", ";
+            }
+        }
 
         intentData += "]}";
     }
