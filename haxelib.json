@@ -1,0 +1,13 @@
+{
+  "name": "extension-alarmmanager",
+  "url": "",
+  "license": "MIT",
+  "tags": ["android","games","openfl","alarmmanager", "localnotification", "schedule", "invokeapp"],
+  "description": "",
+  "version": "1.0.0",
+  "releasenote": "",
+  "contributors": ["manjav"],
+  "dependencies": {
+
+  }
+}
