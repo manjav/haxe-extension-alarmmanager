@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension>
 	
-	<ndll name="alarmmanager" />
-	
 	<!-- Use the following for an Android Java extension, not needed otherwise -->
-	<section if="android">
 		<dependency name="alarmmanager" path="dependencies/android" if="android" />
 	</section>
 	
