@@ -1,4 +1,4 @@
-package com.gerantech.extension.alarms;
+package com.gerantech.extension.alarmmanager;
 
 import java.util.Map;
 import java.util.Random;

@@ -1,4 +1,4 @@
-package com.gerantech.extension.alarms;
+package com.gerantech.extension.alarmmanager;
 
 import android.annotation.SuppressLint;
 import android.app.Notification;

@@ -1,11 +1,11 @@
-package com.gerantech.extension.alarms.recievers;
+package com.gerantech.extension.alarmmanager.recievers;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.gerantech.extension.alarms.SimpleNotification;
+import com.gerantech.extension.alarmmanager.SimpleNotification;
 
 /**
  * @author Mansour Djawadi

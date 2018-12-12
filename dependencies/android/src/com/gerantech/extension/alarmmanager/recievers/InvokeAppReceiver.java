@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.gerantech.extension.alarms.recievers;
+package com.gerantech.extension.alarmmanager.recievers;
 
 import android.annotation.TargetApi;
 import android.content.BroadcastReceiver;
@@ -11,7 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
 
-import com.gerantech.extension.alarms.AlarmsExtension;
+import com.gerantech.extension.alarmmanager.AlarmsExtension;
 
 /**
  * @author Mansour Djawadi
