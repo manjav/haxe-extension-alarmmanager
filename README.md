@@ -16,17 +16,17 @@ Add to `project.xml`:
 And import into your project (haxe) with:
   
 ```Haxe
-import com.gerantech.extension.alarmmanager.Alarms;
+import com.gerantech.extension.alarmmanager.AlarmManager;
 ```
 # Schedule Local Notification
 
 ```Haxe
 // notify in 3 seconds later time every day :
-Alarms.scheduleLocalNotification("notification ticker", "notification title", "notification message", Date.now().getTime() + 3000, DateTools.days(1), "notification info", "comma,sepatated,args,to,retrieve,after,notification.touched");
+AlarmManager.scheduleLocalNotification("notification ticker", "notification title", "notification message", Date.now().getTime() + 3000, DateTools.days(1), "notification info", "comma,sepatated,args,to,retrieve,after,notification.touched");
 
 
 // cancel and delete notification by id:
-Alarms.cancelLocalNotifications( -1);
+AlarmManager.cancelLocalNotifications( -1);
 ```
 
 # Invoke App
@@ -81,7 +81,7 @@ Step 1: Create templates folder in root of project and create manifest inside th
 
 ```Haxe
 // run app ten secondes later every day:
-Alarms.invokeApp("com.company.product", "welcome,to,haxe", Date.now().getTime() + 10000, DateTools.days(1));
+AlarmManager.invokeApp("com.company.product", "welcome,to,haxe", Date.now().getTime() + 10000, DateTools.days(1));
 ```
 
 If you want retrieve data ("welcome,to,haxe in launched app you can use `getParams` method in `new` or `main` function in target app<br/>
@@ -90,8 +90,8 @@ Dont forget if you want run target app when screen locked, `showOnLockScreen` at
 public function new()
 {
 	super();
-	trace(Alarms.getParams());//JsonString  {[{"arg0":"welcome"}, {"arg1":"to"}, {"arg2":"haxe"}]}
-	//var data:Dynamic = JsonParser.parse(Alarms.getParams());
+	trace(AlarmManager.getParams());//JsonString  {[{"arg0":"welcome"}, {"arg1":"to"}, {"arg2":"haxe"}]}
+	//var data:Dynamic = JsonParser.parse(AlarmManager.getParams());
 }
 ```
 
@@ -132,10 +132,10 @@ Now your manifest ready
 
 ```Haxe
 // run app ten secondes later one time:
-Alarms.invokeAppScheme("testapp://testoo?a=1&b=2", "welcome,to,haxe", Date.now().getTime() + 10000, 0);
+AlarmManager.invokeAppScheme("testapp://testoo?a=1&b=2", "welcome,to,haxe", Date.now().getTime() + 10000, 0);
 ```
 As local notification you can cancel invokes by:
 ```Haxe
 // cancel invoke by id:
-Alarms.cancelInvokeApp();
+AlarmManager.cancelInvokeApp();
 ```
