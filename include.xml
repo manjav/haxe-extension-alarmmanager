@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension>
-	
+		
 	<!-- Use the following for an Android Java extension, not needed otherwise -->
-		<dependency name="alarmmanager" path="dependencies/android" if="android" />
-	</section>
-	
-	<android extension="com.gerantech.extension.alarms.AlarmsExtension" />
+	<dependency name="alarmmanager" path="dependencies/android" if="android" />
+	<android extension="com.gerantech.extension.alarmmanager.AlarmsExtension" />
 	
 </extension>
