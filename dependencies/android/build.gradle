@@ -1,0 +1,21 @@
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+	dependencies {
+		classpath 'com.android.tools.build:gradle:::ANDROID_GRADLE_PLUGIN::'
+	}
+}
+
+apply plugin: 'com.android.library'
+
+android {
+	compileSdkVersion Integer.parseInt(project.ANDROID_BUILD_SDK_VERSION)
+	buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
+}
+
+dependencies {
+    implementation project(':deps:extension-api')
+    implementation group: 'com.unity3d.ads', name: 'unity-ads', version: '3.6.0'
+}
