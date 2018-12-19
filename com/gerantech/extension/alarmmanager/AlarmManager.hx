@@ -19,7 +19,7 @@ package com.gerantech.extension.alarmmanager;
 class AlarmManager 
 {
 	#if (android && openfl)
-	private static var notify_jni = JNI.createStaticMethod ("com.gerantech.extension.alarmmanager.AlarmsExtension", "notification", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IIIZ)I");
+	private static var notify_jni = JNI.createStaticMethod ("com.gerantech.extension.alarmmanager.AlarmsExtension", "notify", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IIIZ)I");
 	private static var invoke_jni = JNI.createStaticMethod ("com.gerantech.extension.alarmmanager.AlarmsExtension", "invokeApp", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IIIZ)I");
 	private static var params_jni = JNI.createStaticMethod ("com.gerantech.extension.alarmmanager.AlarmsExtension", "getParams", "()Ljava/lang/String;");
 	#end
