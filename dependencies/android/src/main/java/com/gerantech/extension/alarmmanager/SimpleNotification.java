@@ -22,10 +22,6 @@ public class SimpleNotification {
             //Log.i(AlarmsExtension.LOG_TAG, AlarmsExtension.packageName + " " + AlarmsExtension.mainActivity.getLocalClassName());
             Intent myIntent = new Intent(context, Class.forName(context.getPackageName() + ".MainActivity"));// + ".AppEntry"
 
-            // put data for host app
-            int s = 0;
-            for (String d : data.split(","))
-                myIntent.putExtra("arg" + (s++), d);
             myIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
             //use the flag FLAG_UPDATE_CURRENT to override any notification already there

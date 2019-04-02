@@ -37,13 +37,7 @@ public class InvokeAppReceiver extends BroadcastReceiver
                 	return;
                 }
                 i.setAction(Intent.ACTION_MAIN);
-
-                // put data for host app
-
-                int s=0;
-                for(String d : data.split(","))
-                    i.putExtra("arg"+(s++), d);
-
+                i.putExtra("data", data);
     			context.startActivity(i);
             }
             catch (Exception e)
