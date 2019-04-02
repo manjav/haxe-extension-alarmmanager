@@ -22,10 +22,7 @@ public class AlarmsExtension extends Extension {
         bundle.putString("text", text);
         bundle.putString("info", info);
         bundle.putString("data", data);
-        bundle.putString("icon", icon);
-        bundle.putString("sound", sound);
-
-        return alarm(LocalNotificationReceiver.class, bundle, time, interval, id, clearPreviouses);
+        return alarm(mainContext, LocalNotificationReceiver.class, bundle, time, interval, id, clearPreviouses);
     }
 
     public static int invokeApp(String scheme, String packageName, String data, int time, int interval, int id, boolean clearPreviouses) {
@@ -34,33 +31,26 @@ public class AlarmsExtension extends Extension {
         bundle.putString("packageName", packageName);
         bundle.putString("data", data);
 
-        return alarm(InvokeAppReceiver.class, bundle, time, interval, id, clearPreviouses);
+        return alarm(mainContext, InvokeAppReceiver.class, bundle, time, interval, id, clearPreviouses);
     }
 
-    private static int alarm(Class<?> cls, Bundle bundle, int time, int interval, int id, boolean clearPreviouses) {
-        // cancel previous notifications
+    private static int alarm(Context context, Class<?> cls, Bundle bundle, int time, int interval, int id, boolean clearPreviouses) {
         if (id != -2) {
-            cancel(id);
-            AlarmsManager.cancel(cls, id);
+            cancel(context, id);
+            AlarmsManager.cancel(context, cls, id);
             return id;
         }
 
-        // clear previous notifications
-        if (clearPreviouses) {
-            cancel(-1);
-            AlarmsManager.cancel(cls, -1);
+        // Clear previous notifications
+        if (clearPrevious) {
+            cancel(context, -1);
+            AlarmsManager.cancelAll(context, cls);
         }
 
-        if (interval == 0)
-            id = AlarmsManager.set(cls, bundle, (long) time);
-        else
-            id = AlarmsManager.setRepeating(cls, bundle, (long) time, (long) interval);
-
-        return id;
+        return AlarmsManager.schedule(context, cls, bundle, (long) time);
     }
 
-    public static void cancel(int id) {
-        NotificationManager notificationManager = (NotificationManager) mainContext.getSystemService(Context.NOTIFICATION_SERVICE);
+    public static void cancel(Context context, int id) {
         if (id == -1)
             notificationManager.cancelAll();
         else
