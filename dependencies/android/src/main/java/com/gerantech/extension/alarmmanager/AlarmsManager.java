@@ -8,9 +8,11 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.util.Log;
+
+import java.util.Map;
+import java.util.Random;
 
 public class AlarmsManager {
 
@@ -56,15 +58,17 @@ public class AlarmsManager {
             @SuppressWarnings("unchecked")
             Map<String, Boolean> messagesMap = (Map<String, Boolean>) sharedPreferences.getAll();
             for (Map.Entry<String, Boolean> entry : messagesMap.entrySet()) {
-                //Log.w("A.N.E", entry.getKey()+" -> "+entry.getValue());
+                //Log.w(AndroidExtension.LOG_TAG, entry.getKey()+" -> "+entry.getValue());
                 id = Integer.parseInt(entry.getKey());
                 pendingIntent = PendingIntent.getBroadcast(context, id, intent, 0);
                 alarmManager.cancel(pendingIntent);
+                notificationManager.cancel(Integer.parseInt(entry.getKey()));
             }
             editor.clear();
         } else {
             alarmManager.cancel(pendingIntent);
             editor.remove(id + "");
+            notificationManager.cancel(id);
         }
         editor.apply();
         //Toast.makeText(context, notiID+" canceled", Toast.LENGTH_LONG).show();
