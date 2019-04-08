@@ -58,7 +58,6 @@ public class AlarmsExtension extends Extension {
         //Log.i(LOG_TAG, "Notification canceled by "+id);
     }
 
-
     public void onCreate(Bundle savedInstanceState) {
         // for launch app when screen locked
         mainActivity.getWindow().addFlags(
@@ -67,37 +66,37 @@ public class AlarmsExtension extends Extension {
                         WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
                         WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
 
-        // retrieve data
+        // Retrieve data
         intentData = "{[";
-        Object[] keis = null;
+        Object[] keys = null;
 
-        // retrieve bundle extra data and add to json string
+        // Retrieve bundle extra data and add to json string
         Bundle bundle = mainActivity.getIntent().getExtras();
         if (bundle != null) {
-            keis = bundle.keySet().toArray();
-            for (int step = 0; step < keis.length; step++) {
-                String key = (String) keis[step];
+            keys = bundle.keySet().toArray();
+            for (int step = 0; step < keys.length; step++) {
+                String key = (String) keys[step];
                 Object value = bundle.get(key);
                 intentData += "{\"" + key + "\":\"" + value.toString() + "\"}";
 
-                if (step < keis.length - 1)
+                if (step < keys.length - 1)
                     intentData += ", ";
             }
         }
 
-        // retrieve scheme query params and add to json string
+        // Retrieve scheme query params and add to json string
         Uri data = mainActivity.getIntent().getData();
         if (data != null) {
-            if (keis != null)
+            if (keys != null)
                 intentData += ", ";
 
-            keis = data.getQueryParameterNames().toArray();
-            for (int step = 0; step < keis.length; step++) {
-                String key = (String) keis[step];
+            keys = data.getQueryParameterNames().toArray();
+            for (int step = 0; step < keys.length; step++) {
+                String key = (String) keys[step];
                 Object value = data.getQueryParameter(key);
                 intentData += "{\"" + key + "\":\"" + value.toString() + "\"}";
 
-                if (step < keis.length - 1)
+                if (step < keys.length - 1)
                     intentData += ", ";
             }
         }
