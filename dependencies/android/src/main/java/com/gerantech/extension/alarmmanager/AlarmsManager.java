@@ -23,24 +23,14 @@ public class AlarmsManager {
         bundle.putInt("id", id);
         intent.putExtras(bundle);
 
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(AlarmsExtension.mainContext, id, intent, 0);
-        AlarmManager alarmManager = (AlarmManager) AlarmsExtension.mainContext.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.set(AlarmManager.RTC_WAKEUP, time, pendingIntent);
-        //Log.i(AlarmsExtension.LOG_TAG, cls.getSimpleName()+" "+ time+" "+ id);
-        return id;
-    }
-
-    public static int setRepeating(Class<?> cls, Bundle bundle, long time, long interval) {
-        Intent intent = new Intent(AlarmsExtension.mainContext, cls);
-
-        int id = getRandomID();
-        bundle.putInt("id", id);
-        intent.putExtras(bundle);
-
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(AlarmsExtension.mainContext, id, intent, 0);
-        AlarmManager alarmManager = (AlarmManager) AlarmsExtension.mainContext.getSystemService(Context.ALARM_SERVICE);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, id, intent, 0);
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        assert alarmManager != null;
+        if (interval > 1)
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, time, interval, pendingIntent); // Millisec * Second * Minute
-        Log.i(AlarmsExtension.LOG_TAG, "setRepeating " + cls.getSimpleName() + " " + time + " " + interval + " " + id);
+        else
+            alarmManager.set(AlarmManager.RTC_WAKEUP, time, pendingIntent);
+//        Log.i(AlarmsExtension.LOG_TAG, "schedule => " + cls.getSimpleName() + " time:" + time + " interval:" + interval + " id:" + id);
         return id;
     }
 
