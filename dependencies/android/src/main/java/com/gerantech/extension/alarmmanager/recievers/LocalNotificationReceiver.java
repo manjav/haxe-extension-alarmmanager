@@ -3,8 +3,13 @@ package com.gerantech.extension.alarmmanager.recievers;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 
+import androidx.annotation.RequiresApi;
+
+import com.gerantech.extension.alarmmanager.AlarmsExtension;
 import com.gerantech.extension.alarmmanager.SimpleNotification;
 
 /**
@@ -12,23 +17,9 @@ import com.gerantech.extension.alarmmanager.SimpleNotification;
  */
 
 public class LocalNotificationReceiver extends BroadcastReceiver {
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void onReceive(Context context, Intent intent) {
-        Bundle bundle = intent.getExtras();
-        int notiID = bundle.getInt("id");
-        String notiTicker = bundle.getString("ticker");
-        String notiTitle = bundle.getString("title");
-        String notiText = bundle.getString("text");
-        String notiInfo = bundle.getString("info");
-        String notiData = bundle.getString("data");
-        String notiIcon = bundle.getString("icon");
-        String notiSound = bundle.getString("sound");
-
-        SimpleNotification.notify(context, notiID, notiTicker, notiTitle, notiText, notiInfo, notiData, notiIcon, notiSound);
-
-        //Log.i(AlarmsExtension.LOG_TAG, "{\"id\":\""+notiID+"\",\"ticker\":\""+notiTicker+"\",\"title\":\""+notiTitle+"\",\"text\":\""+notiText+"\",\"info\":\""+notiInfo+"\",\"data\":"+notiData+"}"+ notiIcon+ notiSound);
-		/*if( extensionContext != null )
-			extensionContext.dispatchStatusEventAsync("LocalNotificationReceived", "{\"id\":\""+notiID+"\",\"ticker\":\""+notiTicker+"\",\"title\":\""+notiTitle+"\",\"text\":\""+notiText+"\",\"info\":\""+notiInfo+"\",\"data\":"+notiData+"}");
-*/
-        //AlarmsManager.cancel(context, LocalNotificationReceiver.class, notiID);
+        Bundle b = intent.getExtras();
+        SimpleNotification.notify(context, b.getInt("id"), b.getString("title"), b.getString("text"), b.getString("data"));
     }
 }

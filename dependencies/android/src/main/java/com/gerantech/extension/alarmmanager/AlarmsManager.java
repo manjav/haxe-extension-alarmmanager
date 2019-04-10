@@ -1,9 +1,7 @@
 package com.gerantech.extension.alarmmanager;
 
-import java.util.Map;
-import java.util.Random;
-
 import android.app.AlarmManager;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -16,7 +14,7 @@ import java.util.Random;
 
 public class AlarmsManager {
 
-    public static int schedule(Context context, Class<?> cls,  Bundle bundle, long t
+    public static int schedule(Context context, Class<?> cls, long time, long interval, Bundle bundle) {
         Intent intent = new Intent(context, cls);
 
         int id = getRandomID(context);
@@ -27,7 +25,7 @@ public class AlarmsManager {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         assert alarmManager != null;
         if (interval > 1)
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, time, interval, pendingIntent); // Millisec * Second * Minute
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, time, interval, pendingIntent); // Millisec * Second * Minute
         else
             alarmManager.set(AlarmManager.RTC_WAKEUP, time, pendingIntent);
 //        Log.i(AlarmsExtension.LOG_TAG, "schedule => " + cls.getSimpleName() + " time:" + time + " interval:" + interval + " id:" + id);

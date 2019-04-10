@@ -15,11 +15,10 @@ import android.util.Log;
 
 public class SimpleNotification {
 
-    public static void notify(Context context, int id, String ticker, String title, String text, String info, String data, String icon, String sound) {
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static void notify(Context context, int id, String title, String text, String data) {
         try {
-
-            Log.i(AlarmsExtension.LOG_TAG, id + " " + ticker + " " + title + " " + text + " " + info + " " + icon + " " + sound);
-            //Log.i(AlarmsExtension.LOG_TAG, AlarmsExtension.packageName + " " + AlarmsExtension.mainActivity.getLocalClassName());
+//            Log.i(AlarmsExtension.LOG_TAG, id + " " + ticker + " " + title + " " + text + " " + info + " " + icon + " " + sound);
             Intent myIntent = new Intent(context, Class.forName(context.getPackageName() + ".MainActivity"));// + ".AppEntry"
 
             myIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);

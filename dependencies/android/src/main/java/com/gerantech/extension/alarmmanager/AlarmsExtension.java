@@ -15,26 +15,25 @@ public class AlarmsExtension extends Extension {
     public static final String LOG_TAG = "H.N.E";
     private static String intentData;
 
-    public static int notify(String ticker, String title, String text, String info, String data, String icon, String sound, int time, int interval, int id, boolean clearPreviouses) {
+    public static int notify(String title, String text, long time, long interval, int id, boolean clearPrevious, String data) {
         Bundle bundle = new Bundle();
-        bundle.putString("ticker", ticker);
         bundle.putString("title", title);
         bundle.putString("text", text);
-        bundle.putString("info", info);
         bundle.putString("data", data);
-        return alarm(mainContext, LocalNotificationReceiver.class, bundle, time, interval, id, clearPreviouses);
+        return alarm(mainContext, LocalNotificationReceiver.class, time, interval, id, clearPrevious, bundle);
     }
 
-    public static int invokeApp(String scheme, String packageName, String data, int time, int interval, int id, boolean clearPreviouses) {
+    public static int invokeApp(String scheme, String packageName, long time, long interval, int id, boolean clearPrevious, String data) {
         Bundle bundle = new Bundle();
         bundle.putString("scheme", scheme);
         bundle.putString("packageName", packageName);
         bundle.putString("data", data);
 
-        return alarm(mainContext, InvokeAppReceiver.class, bundle, time, interval, id, clearPreviouses);
+        return alarm(mainContext, InvokeAppReceiver.class, time, interval, id, clearPrevious, bundle);
     }
 
-    private static int alarm(Context context, Class<?> cls, Bundle bundle, int time, int interval, int id, boolean clearPreviouses) {
+    private static int alarm(Context context, Class<?> cls, long time, long interval, int id, boolean clearPrevious, Bundle bundle) {
+        // Cancel previous notifications
         if (id != -2) {
             cancel(context, id);
             AlarmsManager.cancel(context, cls, id);
@@ -47,10 +46,11 @@ public class AlarmsExtension extends Extension {
             AlarmsManager.cancelAll(context, cls);
         }
 
-        return AlarmsManager.schedule(context, cls, bundle, (long) time);
+        return AlarmsManager.schedule(context, cls, time, interval, bundle);
     }
 
     public static void cancel(Context context, int id) {
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         if (id == -1)
             notificationManager.cancelAll();
         else
