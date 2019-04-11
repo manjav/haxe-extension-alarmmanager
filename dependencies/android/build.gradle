@@ -17,5 +17,5 @@ android {
 
 dependencies {
     implementation project(':deps:extension-api')
-    implementation group: 'com.unity3d.ads', name: 'unity-ads', version: '3.6.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
 }
