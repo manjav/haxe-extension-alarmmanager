@@ -10,8 +10,12 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.util.Log;
+
+
+import org.json.JSONObject;
 
 public class SimpleNotification {
 
@@ -20,6 +24,28 @@ public class SimpleNotification {
         try {
 //            Log.i(AlarmsExtension.LOG_TAG, id + " " + ticker + " " + title + " " + text + " " + info + " " + icon + " " + sound);
             Intent myIntent = new Intent(context, Class.forName(context.getPackageName() + ".MainActivity"));// + ".AppEntry"
+
+            // put icon for host app
+            String ticker = null;
+            String icon = null;
+            String sound = null;
+            String contentInfo = null;
+            String channel = id + "-channel";
+            String lightColor = "#FF00FF00";
+            String vibrationPattern = "100,350,500";
+            if (data != null) {
+                myIntent.putExtra("data", data);
+
+                // Create extra options
+                JSONObject jsonObject = new JSONObject(data);
+                ticker = jsonObject.has("ticker") ? jsonObject.getString("ticker") : null;
+                icon = jsonObject.has("icon") ? jsonObject.getString("icon") : null;
+                sound = jsonObject.has("sound") ? jsonObject.getString("sound") : null;
+                channel = jsonObject.has("channel") ? jsonObject.getString("channel") : id + "-channel";
+                contentInfo = jsonObject.has("contentInfo") ? jsonObject.getString("contentInfo") : null;
+                lightColor = jsonObject.has("lightColor") ? jsonObject.getString("lightColor") : "#FF00FFFF";
+                vibrationPattern = jsonObject.has("vibrationPattern") ? jsonObject.getString("vibrationPattern") : "100,350,500";
+            }
 
             myIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
