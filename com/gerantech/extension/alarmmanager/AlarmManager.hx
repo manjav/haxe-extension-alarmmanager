@@ -8,13 +8,12 @@ package com.gerantech.extension.alarmmanager;
 	import lime.system.JNI;
 #end
 
- 
-class AlarmManager 
-{
+class AlarmManager {
 	#if (android && openfl)
-	private static var notify_jni = JNI.createStaticMethod ("com.gerantech.extension.alarmmanager.AlarmsExtension", "notify", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IIIZ)I");
-	private static var invoke_jni = JNI.createStaticMethod ("com.gerantech.extension.alarmmanager.AlarmsExtension", "invokeApp", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IIIZ)I");
-	private static var params_jni = JNI.createStaticMethod ("com.gerantech.extension.alarmmanager.AlarmsExtension", "getParams", "()Ljava/lang/String;");
+	static var pn = "com.gerantech.extension.alarmmanager.AlarmsExtension";
+	static var notify_jni = JNI.createStaticMethod(pn, "notify", "(Ljava/lang/String;Ljava/lang/String;IIIZLjava/lang/String;)I");
+	static var invoke_jni = JNI.createStaticMethod(pn, "invokeApp", "(Ljava/lang/String;Ljava/lang/String;IIIZLjava/lang/String;)I");
+	static var params_jni = JNI.createStaticMethod(pn, "getParams", "()Ljava/lang/String;");
 	#end
 
 	/**
