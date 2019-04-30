@@ -4,15 +4,8 @@ package com.gerantech.extension.alarmmanager;
  * ...
  * @author Mansour Djawadi
  */
-
- 
-#if cpp
-	import cpp.Lib;
-#elseif neko
-#end
-
 #if (android && openfl)
-	import openfl.utils.JNI;
+	import lime.system.JNI;
 #end
 
  
