@@ -59,26 +59,29 @@ public class SimpleNotification {
             ApplicationInfo applicationInfo = pm.getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
             Resources resources = pm.getResourcesForApplication(applicationInfo);
 
-            builder.setContentIntent(contentIntent)
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(context, notificationChannel.getId())
                     .setSmallIcon(applicationInfo.icon)
-                    .setWhen(System.currentTimeMillis())
-                    .setAutoCancel(true)
-                    .setDefaults(Notification.DEFAULT_ALL)
-                    .setTicker(ticker)
                     .setContentTitle(title)
                     .setContentText(text)
-                    .setContentInfo(info);
+                    .setStyle(new NotificationCompat.BigTextStyle().bigText(text))
+                    .setContentIntent(contentIntent)
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
-            if (icon.isEmpty())
-                builder.setLargeIcon(BitmapFactory.decodeResource(resources, applicationInfo.icon));
-            else
+            if (contentInfo != null && !contentInfo.isEmpty())
+                builder.setContentInfo(contentInfo);
+
+            if (ticker != null && !ticker.isEmpty())
+                builder.setTicker(ticker);
+
+            if (icon != null && !icon.isEmpty())
                 builder.setLargeIcon(BitmapFactory.decodeFile(icon));
+            else
+                builder.setLargeIcon(BitmapFactory.decodeResource(resources, applicationInfo.icon));
 
-            if (!sound.isEmpty())
+            if (sound != null && !sound.isEmpty())
                 builder.setSound(Uri.parse(sound));
 
-            Notification notification = builder.build();
-            notificationManager.notify(id, notification);
+            NotificationManagerCompat.from(context).notify(id, builder.build());
         } catch (Exception e) {
             Log.e(AlarmsExtension.LOG_TAG, e.toString());
             e.printStackTrace();
