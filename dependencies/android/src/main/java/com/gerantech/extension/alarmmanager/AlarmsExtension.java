@@ -15,7 +15,7 @@ public class AlarmsExtension extends Extension {
     public static final String LOG_TAG = "H.N.E";
     private static String intentData;
 
-    public static int notify(String title, String text, long time, long interval, int id, boolean clearPrevious, String data) {
+    public static int notify(String title, String text, int time, int interval, int id, boolean clearPrevious, String data) {
         Bundle bundle = new Bundle();
         bundle.putString("title", title);
         bundle.putString("text", text);
@@ -23,7 +23,7 @@ public class AlarmsExtension extends Extension {
         return alarm(mainContext, LocalNotificationReceiver.class, time, interval, id, clearPrevious, bundle);
     }
 
-    public static int invokeApp(String scheme, String packageName, long time, long interval, int id, boolean clearPrevious, String data) {
+    public static int invokeApp(String scheme, String packageName, int time, int interval, int id, boolean clearPrevious, String data) {
         Bundle bundle = new Bundle();
         bundle.putString("scheme", scheme);
         bundle.putString("packageName", packageName);
