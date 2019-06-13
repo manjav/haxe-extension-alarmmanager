@@ -61,6 +61,8 @@ public class SimpleNotification {
             notificationChannel.setShowBadge(true);
             notificationManager.createNotificationChannel(notificationChannel);
 
+            notificationChannel.enableLights(true);
+            notificationChannel.setLightColor(Color.parseColor(lightColor));
 
             PackageManager pm = context.getPackageManager();
             ApplicationInfo applicationInfo = pm.getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
