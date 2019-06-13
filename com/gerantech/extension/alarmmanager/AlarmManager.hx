@@ -36,14 +36,12 @@ class AlarmManager {
 		#end
 	}
 	
-	
 	/**
 	 * @param	notificationID : Cancel previous notification by id<br>if id equals -1 all notifications have been canceled.
 	 */
-	public static function cancelLocalNotifications(notificationID:Int = -1):Void
-	{
+	public static function cancelLocalNotifications(notificationId:Int = -1):Void {
 		#if (android && openfl)
-		notify_jni("", "", "", "", "", "", "", 0, 0, notificationID, false);
+		notify_jni("", "", 0, 0, notificationId, false, "");
 		#end
 	}		
 	
