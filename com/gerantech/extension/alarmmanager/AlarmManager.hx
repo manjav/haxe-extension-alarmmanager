@@ -54,10 +54,9 @@ class AlarmManager {
 	 * @param	clearPreviouses : clear all invokes before invoke
 	 * @return id of invoke for canceling
 	 */
-	public static function invokeAppScheme(scheme:String, data:String, time:Float, interval:Float=0, clearPreviouses:Bool=false):Int
-	{
+	public static function invokeAppScheme(scheme:String, time:Float, interval:Float = 0, clearPrevious:Bool = false, data:String = ""):Int {
 		#if (android && openfl)
-		return invoke_jni(scheme, "", data, cast(time,Int), cast(interval,Int), -2, clearPreviouses);
+		return invoke_jni(scheme, "", Math.round(time), Math.round(interval), -2, clearPrevious, data);
 		#end
 	}
 	/**
