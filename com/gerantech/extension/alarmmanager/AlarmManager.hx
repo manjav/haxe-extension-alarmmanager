@@ -77,10 +77,9 @@ class AlarmManager {
 	/**
 	 * @param	scheduleID (if is -1 all invoke will be canceled.)
 	 */
-	public static function cancelInvokeApp(scheduleID:Int = -1):Void
-	{
+	public static function cancelInvokeApp(scheduleID:Int = -1):Void {
 		#if (android && openfl)
-		invoke_jni("", "", "", 0, 0, scheduleID, false);
+		invoke_jni("", "", 0, 0, scheduleID, false, "");
 		#end
 	}
 
