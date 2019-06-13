@@ -17,11 +17,11 @@ class AlarmManager {
 	#end
 
 	/**
-	 * 
+	 *
 	 * @param	title : notification title
 	 * @param	text : notification body
 	 * @param	time : notification time in miliseconds
-	 * @param	interval : loop time in miliseconds[zero value for disable interval] 
+	 * @param	interval : loop time in miliseconds[zero value for disable interval]
 	 * @param	clearPrevious : cancel and delete all previous notification
 	 * @param	data : camma separated data (you can retrieve in getparams method
 	 * @return id of notification for canceling
@@ -32,7 +32,7 @@ class AlarmManager {
 		#end
 		return -1;
 	}
-	
+
 	/**
 	 * @param	notificationID : Cancel previous notification by id<br>if id equals -1 all notifications have been canceled.
 	 */
@@ -40,10 +40,10 @@ class AlarmManager {
 		#if (android && openfl)
 		notify_jni("", "", 0, 0, notificationId, false, "");
 		#end
-	}		
-	
+	}
+
 	/**
-	 * 
+	 *
 	 * @param	scheme : as app://arg0=1&arg1=2
 	 * @param	time : in miliseconds
 	 * @param	interval : in miliseconds too loop [zero value for disable interval]
@@ -59,12 +59,12 @@ class AlarmManager {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param	packageName : as com.company.product
-	 * @param	data : you can use camma seprated data
 	 * @param	time : in miliseconds
 	 * @param	interval : in miliseconds too loop [zero value for disable interval]
-	 * @param	clearPreviouses : clear all invokes before invoke
+	 * @param	clearPrevious : clear all invokes before invoke
+	 * @param	data : you can use camma seprated data
 	 * @return id of invoke for canceling
 	 */
 	public static function invokeApp(packageName:String, time:Float, interval:Float = 0, clearPrevious:Bool = false, data:String = ""):Int {
