@@ -5,11 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
-import com.gerantech.extension.alarmmanager.AlarmsExtension;
 import com.gerantech.extension.alarmmanager.SimpleNotification;
 
 /**
