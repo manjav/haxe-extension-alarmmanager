@@ -18,16 +18,12 @@ class AlarmManager {
 
 	/**
 	 * 
-	 * @param	ticker : notification ticker
 	 * @param	title : notification title
-	 * @param	message : notification body
+	 * @param	text : notification body
 	 * @param	time : notification time in miliseconds
 	 * @param	interval : loop time in miliseconds[zero value for disable interval] 
-	 * @param	info : notification info
+	 * @param	clearPrevious : cancel and delete all previous notification
 	 * @param	data : camma separated data (you can retrieve in getparams method
-	 * @param	iconURL : notification icon url
-	 * @param	soundURL : notification sound url
-	 * @param	clearPreviouses : cancel and delete all previous notification
 	 * @return id of notification for canceling
 	 */
 	public static function scheduleLocalNotification(title:String, text:String, time:Float, interval:Float = 0, clearPrevious:Bool = false, data:String = ""):Int {
