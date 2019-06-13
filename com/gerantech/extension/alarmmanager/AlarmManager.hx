@@ -30,10 +30,9 @@ class AlarmManager {
 	 * @param	clearPreviouses : cancel and delete all previous notification
 	 * @return id of notification for canceling
 	 */
-	public static function scheduleLocalNotification(ticker:String, title:String, message:String, time:Float, interval:Float=0, info:String="", data:String="", iconURL:String="", soundURL:String="", clearPreviouses:Bool=false):Int
-	{
+	public static function scheduleLocalNotification(title:String, text:String, time:Float, interval:Float = 0, clearPrevious:Bool = false, data:String = ""):Int {
 		#if (android && openfl)
-		return notify_jni(ticker, title, message, info, data, iconURL, soundURL, cast(time,Int), cast(interval,Int), -2, clearPreviouses);
+		return notify_jni(title, text, Math.round(time), Math.round(interval), -2, clearPrevious, data);
 		#end
 	}
 	
