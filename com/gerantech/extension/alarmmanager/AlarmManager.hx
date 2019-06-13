@@ -45,10 +45,10 @@ class AlarmManager {
 	/**
 	 * 
 	 * @param	scheme : as app://arg0=1&arg1=2
-	 * @param	data : you can use camma seprated data
 	 * @param	time : in miliseconds
 	 * @param	interval : in miliseconds too loop [zero value for disable interval]
-	 * @param	clearPreviouses : clear all invokes before invoke
+	 * @param	clearPrevious : clear all invokes before invoke
+	 * @param	data : you can use camma seprated data
 	 * @return id of invoke for canceling
 	 */
 	public static function invokeAppScheme(scheme:String, time:Float, interval:Float = 0, clearPrevious:Bool = false, data:String = ""):Int {
