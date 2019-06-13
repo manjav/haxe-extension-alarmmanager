@@ -34,6 +34,7 @@ class AlarmManager {
 		#if (android && openfl)
 		return notify_jni(title, text, Math.round(time), Math.round(interval), -2, clearPrevious, data);
 		#end
+		return -1;
 	}
 	
 	/**
@@ -58,7 +59,9 @@ class AlarmManager {
 		#if (android && openfl)
 		return invoke_jni(scheme, "", Math.round(time), Math.round(interval), -2, clearPrevious, data);
 		#end
+		return -1;
 	}
+
 	/**
 	 * 
 	 * @param	packageName : as com.company.product
@@ -72,6 +75,7 @@ class AlarmManager {
 		#if (android && openfl)
 		return invoke_jni("", packageName, Math.round(time), Math.round(interval), -2, clearPrevious, data);
 		#end
+		return -1;
 	}
 
 	/**
@@ -86,10 +90,10 @@ class AlarmManager {
 	/**
 	 * @return return all sent comma separated data as json string (you can retrieve your data in invoked app)
 	 */
-	public static function getParams():String
-	{
+	public static function getParams():String {
 		#if (android && openfl)
 		return params_jni();
 		#end
+		return "{}";
 	}
 }
