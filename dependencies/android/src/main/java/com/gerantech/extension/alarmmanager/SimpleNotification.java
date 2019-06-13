@@ -64,6 +64,15 @@ public class SimpleNotification {
             notificationChannel.enableLights(true);
             notificationChannel.setLightColor(Color.parseColor(lightColor));
 
+            String[] vibrates = vibrationPattern.split(",");
+            if( vibrates.length > 0){
+                notificationChannel.enableVibration(true);
+                long[] vibratesPattern = new long[vibrates.length];
+                for (int i = 0; i <vibrates.length ; i++)
+                    vibratesPattern[i] = Long.parseLong(vibrates[i]);
+                notificationChannel.setVibrationPattern(vibratesPattern);
+            }
+
             PackageManager pm = context.getPackageManager();
             ApplicationInfo applicationInfo = pm.getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
             Resources resources = pm.getResourcesForApplication(applicationInfo);
